@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -34,7 +35,7 @@ public class Services{
     private int price;
     @Column(name="user_id")
     private int user_id;
-    @Column(name="email")
+    @Email()
     private String email;
     @Column(name="phone")
     private String phone;
@@ -60,11 +61,9 @@ public class Services{
     private String lng;
     @Column(name="reference_id")
     private String reference_id;
-
     @CreationTimestamp
     @Column(name="updated_at", nullable = false, updatable = false)
     private LocalDateTime updated_at;
-
     @UpdateTimestamp
     @Column(name="created_at")
     private LocalDateTime created_at;

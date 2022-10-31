@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServicesServiceImpl implements ServicesServices{
+public class ServicesServiceImpl implements ServicesServices {
 
 
     @Autowired
- private ServicesRepository servicesRepository;
+    private ServicesRepository servicesRepository;
 
     @Override
     public List<Services> getServices() {
@@ -27,12 +27,12 @@ public class ServicesServiceImpl implements ServicesServices{
 
     @Override
     public Services getSingleService(Long id) {
-        Optional<Services> services= Optional.of(servicesRepository.getById(id));
-        if(services.isPresent()){
+        Optional<Services> services = Optional.of(servicesRepository.getById(id));
+        if (services.isPresent()) {
 
             return services.get();
         }
-        throw new RuntimeException("Service not available"+id);
+        throw new RuntimeException("Service not available" + id);
     }
 
     @Override
@@ -43,7 +43,25 @@ public class ServicesServiceImpl implements ServicesServices{
     }
 
     @Override
-    public Services updateService(Services services ) {
+    public Services updateService(Services services) {
         return servicesRepository.save(services);
     }
+
+    @Override
+    public List<Services> getServicesBytitle(String title) {
+        return servicesRepository.findBytitle(title);
+    }
+
+    @Override
+    public List<Services> getServicesByTitleAndLocation(String Address) {
+        return servicesRepository.findByaddress(Address);
+    }
+
+    @Override
+    public List<Services> getServicesByPrice(int price) {
+        return servicesRepository.findByPrice(price);
+    }
+
+
+
 }
