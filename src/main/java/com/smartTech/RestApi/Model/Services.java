@@ -35,7 +35,6 @@ public class Services{
     private int price;
     @Column(name="user_id")
     private int user_id;
-    @Email()
     private String email;
     @Column(name="phone")
     private String phone;

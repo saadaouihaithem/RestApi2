@@ -3,6 +3,7 @@ package com.smartTech.RestApi.Service;
 import com.smartTech.RestApi.Model.Services;
 import com.smartTech.RestApi.Repository.ServicesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class ServicesServiceImpl implements ServicesServices {
     }
 
     @Override
-    public List<Services> getServicesBytitle(String title) {
+    public List<Services> getServicesTitle(String title) {
         return servicesRepository.findBytitle(title);
     }
 
@@ -62,6 +63,41 @@ public class ServicesServiceImpl implements ServicesServices {
         return servicesRepository.findByPrice(price);
     }
 
+    @Override
+    public List<Services> getServicesBySlug(String slug) {
+        return servicesRepository.findBySlug(slug);
+    }
 
+    @Override
+    public List<Services> getServicesByDescription(String description) {
+        return servicesRepository.findByDescription(description);
+    }
+
+    @Override
+    public List<Services> getServicesByCategory(int category_id) {
+
+        return servicesRepository.findByCategory_id(category_id);
+    }
+
+    @Override
+    public List<Services> getServicesByRegion_id(String region_id) {
+        return servicesRepository.findByRegion_id(region_id);
+    }
+
+    @Override
+    public void deleteService(String description) {
+        servicesRepository.DeleteByDescription(description);
+    }
+
+
+
+    @Override
+    public List<Services> findViewsWithSortingAsc() {
+
+        return servicesRepository.findAllOrderByPopulationAsc();
+
+    }
 
 }
+
+

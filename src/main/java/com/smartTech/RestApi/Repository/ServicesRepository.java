@@ -17,6 +17,26 @@ public interface ServicesRepository extends JpaRepository<Services,Long> {
 
     List<Services>findByPrice(int price);
 
+    List <Services>findBySlug(String slug);
+
+    List<Services>findByDescription(String description);
+
+     @Query("FROM  Services WHERE category_id=:category_id")
+    List<Services>findByCategory_id(int category_id);
+
+    @Query("FROM  Services WHERE region_id=:region_id")
+
+    List<Services>findByRegion_id(String region_id);
+  @Query("DELETE FROM Services WHERE description=:description")
+
+    void DeleteByDescription(String description);
+
+    @Query("FROM Services ORDER BY views ASC")
+    List<Services> findAllOrderByPopulationAsc();
+
+
+
+
 
 
 
